@@ -35,7 +35,6 @@
     @media (max-width: 900px) { .landing-hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 3rem; }.landing-hero-copy { max-width: 40rem; }.access-section { gap: 3rem; } }
     @media (max-width: 700px) { .landing-nav { padding: 1.1rem 1.25rem; }.landing-nav-links > a:not(.landing-nav-cta) { display: none; }.landing-hero,.landing-process,.access-section { padding-right: 1.25rem; padding-left: 1.25rem; }.landing-hero h1 { font-size: clamp(2.9rem,13vw,4.2rem); }.landing-ribbon { grid-template-columns: repeat(2,1fr); padding: 1.25rem; }.landing-ribbon > div:nth-child(3) { padding-left: 0; border-left: 0; }.landing-section-heading,.access-section { display: grid; grid-template-columns: 1fr; }.landing-section-heading > p { margin-top: 1.5rem; }.process-grid { grid-template-columns: 1fr; margin-top: 2rem; }.process-grid article { min-height: 0; }.access-section { padding-top: 4rem; padding-bottom: 4rem; }.landing-footer { align-items: flex-start; flex-direction: column; gap: .8rem; padding-right: 1.25rem; padding-left: 1.25rem; }.inventory-float { right: -.25rem; bottom: 1.5rem; }.inventory-window { transform: rotate(0); } }
   </style>
-  <script src="./assets/js/lucide.min.js"></script>
 </head>
 <body class="landing-page">
   <header class="landing-nav">
@@ -58,9 +57,38 @@
   <footer class="landing-footer"><span class="landing-brand"><span class="landing-brand-mark"><i data-lucide="boxes" class="w-4 h-4"></i></span><span>Vend<span>Link</span></span></span><span>Wholesale food sourcing, made simpler.</span></footer>
 
   <script>
-    lucide.createIcons();
-    function switchTab(tab) { document.getElementById('loginForm').classList.toggle('hidden', tab !== 'login'); document.getElementById('signupForm').classList.toggle('hidden', tab !== 'signup'); document.getElementById('tabLogin').classList.toggle('active', tab === 'login'); document.getElementById('tabSignup').classList.toggle('active', tab === 'signup'); }
-    function showStaticNotice(event) { event.preventDefault(); document.getElementById('staticNotice').classList.remove('hidden'); }
+    document.getElementById('staticNotice').textContent = 'Demo mode: create an account stored only in this browser.';
+    function switchTab(tab) {
+      document.getElementById('loginForm').classList.toggle('hidden', tab !== 'login');
+      document.getElementById('signupForm').classList.toggle('hidden', tab !== 'signup');
+      document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
+      document.getElementById('tabSignup').classList.toggle('active', tab === 'signup');
+      document.getElementById('staticNotice').className = 'error-box';
+      document.getElementById('staticNotice').textContent = 'Demo mode: your account is stored only in this browser.';
+    }
+
+    function showStaticNotice(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const notice = document.getElementById('staticNotice');
+      const fields = form.querySelectorAll('input, select');
+      const values = Array.from(fields).map((field) => field.value.trim());
+
+      if (form.id === 'signupForm') {
+        localStorage.setItem('vendlinkDemoAccount', JSON.stringify({ email: values[1], password: values[2], name: values[0] }));
+        switchTab('login');
+        notice.textContent = 'Demo account created. You can now sign in from this browser.';
+        return;
+      }
+
+      const account = JSON.parse(localStorage.getItem('vendlinkDemoAccount') || 'null');
+      if (account && account.email === values[0] && account.password === values[1]) {
+        notice.textContent = 'Welcome back, ' + account.name + '. Demo sign-in successful.';
+      } else {
+        notice.textContent = 'No matching demo account. Register first, then sign in.';
+      }
+      notice.className = 'error-box';
+    }
   </script>
 </body>
 </html>
