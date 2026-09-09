@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Dashboard | VendLink</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body class="role-vendor min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
+  <header class="site-header bg-white border-b border-slate-200 shadow-sm"><div class="site-header-inner max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"><a href="index.html" class="flex items-center gap-2 text-xl font-extrabold text-slate-900">Vend<span class="text-blue-600">Link</span></a><nav class="flex items-center gap-4 text-sm font-semibold"><a href="vendor.html" class="text-blue-600">Vendor</a><a href="supplier.html">Supplier</a><a href="admin.html">Admin</a></nav></div></header>
+  <main class="page-shell max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"><div><p class="text-xs font-bold uppercase tracking-wider text-blue-600">Vendor workspace</p><h1 class="text-2xl font-black text-slate-900 mt-1">Your marketplace, at a glance.</h1><p class="text-sm text-slate-500 mt-1">Find supplies, compare availability, and keep orders moving.</p></div><a href="#catalog" class="btn-primary px-4 py-2.5 rounded-xl text-xs font-bold">Browse supplies</a></div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5"><div class="overview-stat-card overview-stat-blue"><div><div class="overview-stat-label">Total orders</div><div class="overview-stat-value">24</div></div></div><div class="overview-stat-card overview-stat-amber"><div><div class="overview-stat-label">Pending orders</div><div class="overview-stat-value">6</div></div></div><div class="overview-stat-card overview-stat-green"><div><div class="overview-stat-label">Total spend</div><div class="overview-stat-value">₱48,250</div></div></div></div>
+    <section id="catalog" class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6"><div class="flex flex-col sm:flex-row justify-between gap-4 mb-6"><div><h2 class="text-lg font-black">Popular supplies</h2><p class="text-sm text-slate-500 mt-1">Available from trusted suppliers this week.</p></div><input class="px-4 py-2.5 border border-slate-200 rounded-xl text-sm" placeholder="Search products..."></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-4"><article class="border border-slate-200 rounded-xl p-4"><span class="text-xs font-bold text-emerald-600">Produce</span><h3 class="font-bold mt-2">Fresh greens</h3><p class="text-xs text-slate-500 mt-1">12 suppliers available</p><strong class="block mt-5 text-blue-600">From ₱85</strong></article><article class="border border-slate-200 rounded-xl p-4"><span class="text-xs font-bold text-amber-600">Grains</span><h3 class="font-bold mt-2">Premium rice</h3><p class="text-xs text-slate-500 mt-1">8 suppliers available</p><strong class="block mt-5 text-blue-600">From ₱120</strong></article><article class="border border-slate-200 rounded-xl p-4"><span class="text-xs font-bold text-red-500">Protein</span><h3 class="font-bold mt-2">Poultry and meat</h3><p class="text-xs text-slate-500 mt-1">5 suppliers available</p><strong class="block mt-5 text-blue-600">From ₱210</strong></article></div></section>
+  </main>
+</body>
+</html>
